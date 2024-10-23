@@ -9,6 +9,7 @@ const {
   getPublicationByUserId,
   getPublications,
   deletePublication,
+  updatePublication,
 } = require("./controllers");
 const router = express.Router();
 
@@ -22,5 +23,6 @@ router.post("/publication/create", createPublication);
 router.get("/publications/get/:id", getPublicationByUserId);
 router.get("/publications/get", getPublications);
 router.delete("/publication/delete/:id", deletePublication);
+router.put("/publication/update/:id", updatePublication);
 
 module.exports = router;

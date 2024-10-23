@@ -138,6 +138,25 @@ const deletePublication = async (req, res) => {
     res.status(400).send({ error: error.message });
   }
 };
+
+const updatePublication = async (req, res) => {
+  try {
+    const publication = await Publication.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      }
+    );
+    if (!publication) {
+      return res.status(404).send({ error: "Publication introuvable" });
+    }
+    res.status(200).send(publication);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
@@ -148,4 +167,5 @@ module.exports = {
   getPublicationByUserId,
   getPublications,
   deletePublication,
+  updatePublication,
 };
